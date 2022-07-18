@@ -19,13 +19,11 @@ public class ClienteController {
         this.repository = repository;
     }
     
-    // Aggregate root
-    // tag::get-aggregate-root[]
+    // aggroot boiler
     @GetMapping("/clientes")
     List<Cliente> all() {
         return repository.findAll();
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/clientes")
     Cliente novoCliente(@RequestBody Cliente novoCliente) {

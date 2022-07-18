@@ -42,6 +42,19 @@ Abra o terminal (de preferência o Git Bash) e execute os comandos `curl` abaixo
 
     curl -X POST localhost:8080/servicos -H 'Content-type:application/json' -d '{"nome": "Banho", "descricao": "Banho completo em seu pet", "tempo": "1h00", "custo": 24.5}'
 
+
+### Obter todos os animais (GET)*
+
+    curl localhost:8080/animais
+
+*WIP
+
+### Cadastrar um animal (POST)*
+
+    curl -X POST localhost:8080/animais -H 'Content-type:application/json' -d '{"nome": "Spike", "raca": "Basset", "especie": "C", "aparencia": "Marrom com manchas bejes", "cliente": 1}'
+
+*WIP
+
 ## Etapa de segurança - Reverter permissões para ambiente de produção
 
 OBS: Reverter permissões do `springuser` em produção se for o caso.

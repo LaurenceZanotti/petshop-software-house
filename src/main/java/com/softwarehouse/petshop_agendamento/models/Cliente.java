@@ -1,12 +1,16 @@
 package com.softwarehouse.petshop_agendamento.models;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "clientes")
 public class Cliente {
 
     private @Id @GeneratedValue Long id;
@@ -14,7 +18,8 @@ public class Cliente {
     private String telefone;
     private String email;
     private int idade;
-    private ArrayList<String> animais;
+    
+    private @OneToMany(cascade=CascadeType.ALL, mappedBy="cliente") List<Animal> animais;
 
     Cliente() {}
 
@@ -24,7 +29,6 @@ public class Cliente {
         this.email = email;
         this.idade = idade;
     }
-    
 
     public Long getId() {
         return this.id;
@@ -66,13 +70,12 @@ public class Cliente {
         this.idade = idade;
     }
 
-    public ArrayList<String> getAnimais() {
+    public List<Animal> getAnimais() {
         return this.animais;
     }
 
-    public void setAnimais(ArrayList<String> animais) {
+    public void setAnimais(List<Animal> animais) {
         this.animais = animais;
     }
-    
     
 }
