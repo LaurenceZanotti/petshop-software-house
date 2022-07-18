@@ -2,3 +2,46 @@
 
 ## Instalação
 
+Baixar: 
+
+    git clone https://github.com/LaurenceZanotti/petshop-software-house.git
+
+### Configure o MySQL
+
+    mysql> create database petshopdb;
+    mysql> create user 'springuser'@'%' identified by 'ThePassword';
+    mysql> grant all on db_example.* to 'springuser'@'%';
+
+#### Reverter permissões (pule esta etapa)
+
+OBS: Reverter permissões do `springuser` em produção se for o caso.
+
+* Resete as permissões:
+
+        mysql> revoke all on db_example.* from 'springuser'@'%';
+        mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
+
+* Mude o `spring.jpa.hibernate.ddl-auto` para `udpate`
+
+* Reinicie o app
+
+### Execute o aplicativo
+
+    ./mvnw spring-boot:run
+
+ou
+
+    ./mvnw clean package
+    java -jar target/petshop_agendamento-0.0.1-SNAPSHOT.jar
+
+## Testando as endpoints
+
+Abra o terminal (de preferência o Git Bash) e execute os comandos `curl` abaixo
+
+### Obter todos os clientes (GET)
+
+    curl localhost:8080/clientes
+
+### Cadastrar um cliente
+
+    curl -X POST localhost:8080/clientes -H 'Content-type:application/json' -d '{"nome": "Samwise Gamgee", "telefone": "1141384471", "email": "exemplo@exemplo.com", "idade": 24}'
