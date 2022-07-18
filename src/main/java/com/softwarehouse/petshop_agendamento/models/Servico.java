@@ -22,6 +22,9 @@ public class Servico {
     }
 
 
+    public Servico() {}
+
+
     public String getNome() {
         return this.nome;
     }

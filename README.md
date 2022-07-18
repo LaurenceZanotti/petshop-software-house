@@ -12,18 +12,6 @@ Baixar:
     mysql> create user 'springuser'@'%' identified by 'ThePassword';
     mysql> grant all on db_example.* to 'springuser'@'%';
 
-#### Reverter permissões (pule esta etapa)
-
-OBS: Reverter permissões do `springuser` em produção se for o caso.
-
-* Resete as permissões:
-
-        mysql> revoke all on db_example.* from 'springuser'@'%';
-        mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
-
-* Mude o `spring.jpa.hibernate.ddl-auto` para `udpate`
-
-* Reinicie o app
 
 ### Execute o aplicativo
 
@@ -42,6 +30,27 @@ Abra o terminal (de preferência o Git Bash) e execute os comandos `curl` abaixo
 
     curl localhost:8080/clientes
 
-### Cadastrar um cliente
+### Cadastrar um cliente (POST)
 
     curl -X POST localhost:8080/clientes -H 'Content-type:application/json' -d '{"nome": "Samwise Gamgee", "telefone": "1141384471", "email": "exemplo@exemplo.com", "idade": 24}'
+
+### Obter todos os serviços (GET)
+
+    curl localhost:8080/servicos
+
+### Cadastrar um serviço (POST)
+
+    curl -X POST localhost:8080/servicos -H 'Content-type:application/json' -d '{"nome": "Banho", "descricao": "Banho completo em seu pet", "tempo": "1h00", "custo": 24.5}'
+
+## Etapa de segurança - Reverter permissões para ambiente de produção
+
+OBS: Reverter permissões do `springuser` em produção se for o caso.
+
+* Resete as permissões:
+
+        mysql> revoke all on db_example.* from 'springuser'@'%';
+        mysql> grant select, insert, delete, update on db_example.* to 'springuser'@'%';
+
+* Mude o `spring.jpa.hibernate.ddl-auto` para `udpate`
+
+* Reinicie o app
